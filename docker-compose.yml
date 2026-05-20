@@ -1,0 +1,28 @@
+services:
+  localstack:
+    image: localstack/localstack:latest
+    restart: always
+    ports:
+      - "4566:4566"
+    environment:
+      SERVICES: dynamodb,s3
+      LOCALSTACK_AUTH_TOKEN: ${LOCALSTACK}
+    volumes:
+      - "./init-localstack:/etc/localstack/init/ready.d"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - localstack:/var/lib/localstack
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: POSUSE
+      POSTGRES_PASSWORD: POSPAS
+      POSTGRES_DB: POSDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db/:/docker-entrypoint-initdb.d/
+      - postgres:/var/lib/postgresql/
+volumes:
+  postgres:
+  localstack:
