@@ -1,6 +1,6 @@
 services:
   localstack:
-    image: localstack/localstack
+    image: localstack/localstack:latest
     restart: always
     ports:
       - "4566:4566"
@@ -12,7 +12,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - localstack:/var/lib/localstack
   postgres:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: POSUSE
