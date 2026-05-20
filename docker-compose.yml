@@ -11,7 +11,7 @@ services:
       - "./init-localstack:/etc/localstack/init/ready.d"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - localstack:/var/lib/localstack
-  postgres:
+  base-de-datos:
     image: postgres:latest
     restart: always
     environment:
