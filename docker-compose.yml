@@ -23,6 +23,18 @@ services:
     volumes:
       - ./init-db/:/docker-entrypoint-initdb.d/
       - postgres:/var/lib/postgresql/
+  new-data-base-espectacular:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: POSUSE
+      POSTGRES_PASSWORD: POSPAS
+      POSTGRES_DB: POSDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db/:/docker-entrypoint-initdb.d/
+      - postgres:/var/lib/postgresql/
 volumes:
   postgres:
   localstack:
